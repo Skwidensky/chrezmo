@@ -22,8 +22,6 @@ export class GraphComponent implements AfterViewInit, OnDestroy {
   public constructor(private logger: NGXLogger, private state: State) {
     var self = this;
     this.state = state;
-    // this.g = ForceGraph3D();
-    // this.changeForce(-400); // Spread nodes a little wider
     this.highlightNodes = new Set();
     this.highlightLinks = new Set();
     this.hoverNode = null;
@@ -139,6 +137,7 @@ export class GraphComponent implements AfterViewInit, OnDestroy {
       .linkDirectionalParticleWidth(2)
       .linkDirectionalArrowLength(3.5)
       .linkDirectionalArrowRelPos(1)
+      .linkOpacity(0.05)
       .nodeAutoColorBy('neighbors')
       .onNodeHover((node: any) => {
         elem.style.cursor = node ? 'pointer' : 'default'
