@@ -7,8 +7,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
+    "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "strictPropertyInitialization": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -16,6 +18,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
+    // "module": "commonjs",
     "lib": [
       "es2018",
       "dom"
