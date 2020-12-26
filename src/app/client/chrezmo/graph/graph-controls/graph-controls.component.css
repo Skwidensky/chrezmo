@@ -1,0 +1,111 @@
+  .graphcControlsContainer {
+    position: absolute;
+    top: 8%;
+    left: 1%;
+    z-index: 1;
+  }
+  .graph-controls .searchForm {
+    display: flex;
+    align-items: center;
+  }
+  
+  .graph-controls .searchForm-input {
+    padding-left: 0px;
+  }
+  
+  .graph-controls .searchForm-inlineSubmit {
+    display: inline;
+  }
+  
+  .graph-controls .searchForm-button {
+    display: none;
+  }
+
+  .queryInput {
+    width: 500px;
+    font-size: 2.2rem;
+    outline: none;
+  }
+  
+  .queryInput:focus {
+    outline: none;
+  }
+  
+  .queryInput-searchIcon {
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .queryInput-inlineSubmit {
+    display: none;
+  }
+
+  .searchForm-inputContainer {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    align-items: top;
+  }
+  
+  .searchForm-inputContainer button {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .sidenav {
+    margin-left:auto;
+    margin-right:auto;
+    height: 0;
+    width: 30%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    border: 1px solid;
+    border-color: transparent;
+    background-color: rgb(0,0,40);
+    overflow: hidden;
+    transition: 0.4s;
+  }
+  
+  .sidenav .closebtn {
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 0px;
+    font-size: 36px;
+  }
+
+  .sidenav .closebtn:hover {
+    background-color: red;
+    transition: 0.3s;
+  }
+
+  .sidenav .options-table {
+    position: relative;
+    display: inline-block;
+    color: white;
+    background-color: transparent;
+    z-index: 1;
+  }
+
+  .menu {
+    color: white;
+    background-color: rgb(0,0,17);
+    border: none;
+    outline: none;
+  }
+
+  .spathInput {
+    width: 200px;
+    font-size: 1.6rem;
+    outline: none;
+  }
+  
+  .spathInput:focus {
+    outline: none;
+  }
+  
+  .spathInput-inlineSubmit {
+    display: none;
+  }

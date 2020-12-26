@@ -1,0 +1,44 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    top: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; /* Could be more or less, depending on screen size */
+  }
+  
+  .modal-image {
+    min-width: 400px;
+    max-width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:  #fefefe;
+    width: 50%;
+  }
+  
+  .modal-text {
+    background-color:  #fefefe;
+    min-width: 400px;
+    max-width: 400px;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    white-space: normal;
+    overflow: hidden;
+  }

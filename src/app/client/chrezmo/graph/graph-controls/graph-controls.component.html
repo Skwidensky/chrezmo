@@ -1,0 +1,36 @@
+<div class="graphcControlsContainer">
+    <div class="searchForm-inputContainer">
+        <div>
+            <input type="search" class="queryInput" autofocus #queryInput />
+        </div>
+        <div>
+            <button mat-icon-button color="primary" class="queryInput-searchIcon" #querySearchBtn>
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="sidenav" #sideNav>
+        <div class="info">&bull; All queries are case-sensitive &bull; Double-click graph to re-center camera &bull;
+            Right-click nodes for options menu</div>
+        <div class="closebtn" #sideNavCloseBtn>&times;</div>
+        <table class="options-table">
+            <tr>
+                <td>Shortest paths from</td>
+                <td><input type="input" class="spathInput" maxlength="255" #fromInput />
+                <td>to</td>
+                <td><input type="input" class="spathInput" maxlength="255" #toInput />
+            </tr>
+        </table>
+        <table class="options-table">
+            <tr>
+                <td><span
+                        title="Limits the number of child nodes for each source node, but not the total number relationships they have">Max
+                        links per node</span></td>
+                <td><input type="number" #nodeLimitInput min=1 max=1000 value=50 /></td>
+            </tr>
+        </table>
+    </div>
+    <button class="menu" #sideNavBtn>
+        <mat-icon>menu</mat-icon>
+    </button>
+</div>
