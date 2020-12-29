@@ -4,7 +4,9 @@ import { State } from '../state';
 import { NGXLogger } from 'ngx-logger';
 import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
-
+/**
+ * Outer layer of the home-view -- contains the 3D Force Graph and its associated components
+ */
 @Component({
   selector: 'chrezmo',
   templateUrl: './chrezmo.component.html',
@@ -24,7 +26,6 @@ export class Chrezmo implements OnDestroy {
     this.state.makeQuery();
   }
   ngOnDestroy(): void {
-    console.log("DESTROYING CHREZMO");
     this.ctxMenuSub.unsubscribe();
   }
   // Subscribes to relevant data streams

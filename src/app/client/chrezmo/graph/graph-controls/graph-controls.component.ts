@@ -3,6 +3,13 @@ import { Subscription } from 'rxjs';
 import { State } from "../../../state";
 import { NGXLogger } from 'ngx-logger';
 
+/**
+ * Contains the extras for the 3D Force Graph:
+ *   > Input for single query with search-button
+ *   > Slide-down menu
+ *     >> Shortest-path inputs
+ *     >> Child-node limit input
+ */
 @Component({
   selector: 'graph-controls',
   templateUrl: './graph-controls.component.html',
@@ -100,7 +107,7 @@ export class GraphControlsComponent implements AfterViewInit, OnDestroy {
   private toggleSideNav() {
     this.showSideNav = !this.showSideNav;
     if (this.showSideNav) {
-      this.sideNav.nativeElement.style.height = "10%";
+      this.sideNav.nativeElement.style.height = "100px";
       this.sideNav.nativeElement.style.borderColor = "white";
     } else {
       this.sideNav.nativeElement.style.height = "0";

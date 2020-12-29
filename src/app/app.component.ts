@@ -12,6 +12,7 @@ export class AppComponent implements AfterViewInit {
   constructor() {
   }
   ngAfterViewInit(): void {
+    console.log("http://www.unexplainedmysteries.net/c/chresmomancy.htm");
     this.chrezmoheader.nativeElement.addEventListener('click', () => location.href = "mailto:chrezmo@gmail.com?subject=Info");
   }
 }

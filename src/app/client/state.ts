@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { skip } from 'rxjs/operators';
+import { Article } from './trends/chart/chips.component';
+import { DateRange } from './trends/chart/daterange';
 
 @Injectable({
     providedIn: 'root',
@@ -18,6 +19,8 @@ export class State {
     shortestPathPromiseSubj: BehaviorSubject<Promise<any>>;
     sourceNodes: Array<string>;
     presentSummarySubj: BehaviorSubject<any>;
+    dateRangeSubj: BehaviorSubject<DateRange>;
+    wikiViewsPerDayChipsSubj: BehaviorSubject<Article[]>;
     constructor(private logger: NGXLogger) {
         this.logger.info("State Object constructing");
         this.subjects = ['Wikipedia'];
@@ -30,6 +33,8 @@ export class State {
         this.shortestPathPromiseSubj = new BehaviorSubject(new Promise((resolve, reject) => { }));
         this.sourceNodes = [];
         this.presentSummarySubj = new BehaviorSubject('');
+        this.dateRangeSubj = new BehaviorSubject(new DateRange());
+        this.wikiViewsPerDayChipsSubj = new BehaviorSubject([] as Article[]);
     }
 
     getSubjects(): Array<string> {
@@ -77,14 +82,6 @@ export class State {
         return this.queryPromiseSubj.asObservable();
     }
 
-    // shortestPath(): void {
-    //     this.shortestPathSubj.next(1);
-    // }
-
-    // shortestPathObs(): Observable<number> {
-    //     return this.shortestPathSubj.asObservable();
-    // }
-
     makeShortestPathPromise(promise: Promise<any>): void {
         this.logger.info("Sending shortest path Promise to Observable");
         this.shortestPathPromiseSubj.next(promise);
@@ -108,5 +105,21 @@ export class State {
 
     presentSummaryObs(): Observable<any> {
         return this.presentSummarySubj.asObservable();
+    }
+
+    sendDateRange(dateRange: DateRange): void {
+        this.dateRangeSubj.next(dateRange);
+    }
+
+    dateRangeObs(): Observable<DateRange> {
+        return this.dateRangeSubj.asObservable();
+    }
+
+    sendWikiViewsPerDayArticles(articles: Article[]) {
+        this.wikiViewsPerDayChipsSubj.next(articles);
+    }
+
+    wikiViewsPerDayArticlesObs(): Observable<Article[]> {
+        return this.wikiViewsPerDayChipsSubj.asObservable();
     }
 }

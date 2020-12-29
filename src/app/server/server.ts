@@ -101,9 +101,9 @@ app.use((req: any, res: any, next: any) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 })
-app.use(Express.static('client/'));
+app.use(Express.static('dist/chrezmo'));
 app.get('/', (req: any, res: any) => {
-    res.sendFile('index.html', { root: 'client/' });
+    res.sendFile('index.html', { root: 'dist/chrezmo' });
 });
 app.get("/api/query", (req: any, res: any) => {
     fetchQuery(req.query.queries.split(DELIMITER), req.query.limit).then((result: any) => {

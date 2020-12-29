@@ -2,6 +2,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { State } from 'src/app/client/state';
 import * as $ from 'jquery';
 
+/**
+ * Crappy little window-like thing that is used to display the image and summary-text of a Wikipedia article
+ */
 @Component({
   selector: 'summary-dialog',
   templateUrl: './summary-dialog.component.html',

@@ -1,0 +1,21 @@
+.chart-container {
+    min-width: 90%;
+    max-width: 90%;
+    min-height: 50%;
+    max-height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chips-container {
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    padding-left: 25%
+}
+
+.date-range-picker {
+    z-index: 2;
+    padding-left: 5.5%;
+    position: fixed;
+}
