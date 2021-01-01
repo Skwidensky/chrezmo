@@ -1,0 +1,30 @@
+<div id="carousel" class="carousel">
+    <button mat-icon-button color="primary" class="carousel_button carousel_button-left" #chevronLeft>
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div class="carousel_track-container">
+        <ul class="carousel_track" #carouselTrack>
+            <li class="carousel_slide current-rider">
+                <daterangepicker style="padding-left: 5px" [placement]='placement' class="date-range-picker"></daterangepicker>
+                <chips [placement]='placement' class="chips-container"></chips>
+                <div [id]='vpdcontainer' class="carousel_rider">
+                    <wikiviewsperdaychart [placement]='placement'></wikiviewsperdaychart>
+                </div>
+            </li>
+            <li class="carousel_slide">
+                <datepicker style="padding-left: 5px" [placement]='placement' class="date-range-picker"></datepicker>
+                <div [id]='mvacontainer' class="carousel_rider">
+                    <wikitopviewedarticleschart [placement]='placement'></wikitopviewedarticleschart>
+                </div>
+            </li>
+            <li class="carousel_slide">
+                <div class="carousel_rider">
+                    <newschart></newschart>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <button mat-icon-button color="primary" class="carousel_button carousel_button-right" #chevronRight>
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>

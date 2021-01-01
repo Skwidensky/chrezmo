@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Article } from './trends/chart/chips.component';
-import { DateRange } from './trends/chart/daterange';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Article } from './trends/chart/widgets/chips.component';
+import { DateP } from './trends/chart/widgets/datepicker.component';
+import { DateRange } from './trends/chart/widgets/daterangepicker.component';
 
 @Injectable({
     providedIn: 'root',
@@ -21,6 +22,7 @@ export class State {
     presentSummarySubj: BehaviorSubject<any>;
     dateRangeSubj: BehaviorSubject<DateRange>;
     wikiViewsPerDayChipsSubj: BehaviorSubject<Article[]>;
+    datePickerSubj: BehaviorSubject<DateP>;
     constructor(private logger: NGXLogger) {
         this.logger.info("State Object constructing");
         this.subjects = ['Wikipedia'];
@@ -33,8 +35,9 @@ export class State {
         this.shortestPathPromiseSubj = new BehaviorSubject(new Promise((resolve, reject) => { }));
         this.sourceNodes = [];
         this.presentSummarySubj = new BehaviorSubject('');
-        this.dateRangeSubj = new BehaviorSubject(new DateRange());
+        this.dateRangeSubj = new BehaviorSubject({placement: '', start: '', end: ''});
         this.wikiViewsPerDayChipsSubj = new BehaviorSubject([] as Article[]);
+        this.datePickerSubj = new BehaviorSubject({ placement: '', year: '', month: '', day: ''});
     }
 
     getSubjects(): Array<string> {
@@ -121,5 +124,13 @@ export class State {
 
     wikiViewsPerDayArticlesObs(): Observable<Article[]> {
         return this.wikiViewsPerDayChipsSubj.asObservable();
+    }
+
+    sendDateP(datep: DateP): void {
+        this.datePickerSubj.next(datep);
+    }
+
+    datePObs(): Observable<DateP> {
+        return this.datePickerSubj.asObservable();
     }
 }

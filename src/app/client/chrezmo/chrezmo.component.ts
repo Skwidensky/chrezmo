@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
+import * as $ from 'jquery';
+import { NGXLogger } from 'ngx-logger';
+import { Subscription } from 'rxjs';
 import { Contextual } from 'src/plugins/contextual';
 import { State } from '../state';
-import { NGXLogger } from 'ngx-logger';
-import * as $ from 'jquery';
-import { Subscription } from 'rxjs';
 /**
  * Outer layer of the home-view -- contains the 3D Force Graph and its associated components
  */

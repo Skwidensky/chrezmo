@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartComponent } from './wikiviewsperdaychart.component';
+import { WikiViewsPerDayChartComponent } from '../wikiviewsperday/wikiviewsperdaychart.component';
 
 describe('ChartComponent', () => {
-  let component: ChartComponent;
-  let fixture: ComponentFixture<ChartComponent>;
+  let component: WikiViewsPerDayChartComponent;
+  let fixture: ComponentFixture<WikiViewsPerDayChartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
+      declarations: [ WikiViewsPerDayChartComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChartComponent);
+    fixture = TestBed.createComponent(WikiViewsPerDayChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

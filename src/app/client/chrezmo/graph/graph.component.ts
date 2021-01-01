@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { State } from "../../state";
 import ForceGraph3D, { ForceGraph3DInstance } from "3d-force-graph";
-import * as THREE from "three";
-import SpriteText from "three-spritetext";
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import * as $ from 'jquery';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import * as $ from 'jquery';
+import * as THREE from "three";
+import SpriteText from "three-spritetext";
+import { State } from "../../state";
 
 @Component({
   selector: 'graph',

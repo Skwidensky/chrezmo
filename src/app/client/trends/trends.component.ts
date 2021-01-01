@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { State } from '../state';
 
@@ -16,10 +16,20 @@ import { State } from '../state';
   styleUrls: ['./trends.component.css']
 })
 export class TrendsComponent implements OnInit {
+  @ViewChild('topdiv') topdiv: ElementRef;
+  showFull: boolean = true;
   constructor(private logger: NGXLogger) {
-    this.logger.info("Constructor(): Trends")    
-   }
+    this.logger.info("Constructor(): Trends")
+  }
   ngOnInit(): void {
 
+  }
+  public click(): void {
+    this.showFull = !this.showFull;
+    if (this.showFull) {
+      this.topdiv.nativeElement.className = "fullWidth"
+    } else {
+      this.topdiv.nativeElement.className = "noWidth"
+    }
   }
 }
