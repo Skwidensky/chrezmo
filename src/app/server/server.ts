@@ -102,7 +102,7 @@ app.use((req: any, res: any, next: any) => {
     next();
 })
 app.use(Express.static('dist/chrezmo'));
-app.get('/', (req: any, res: any) => {
+app.get('/*', (req: any, res: any) => {
     res.sendFile('index.html', { root: 'dist/chrezmo' });
 });
 app.get("/api/query", (req: any, res: any) => {

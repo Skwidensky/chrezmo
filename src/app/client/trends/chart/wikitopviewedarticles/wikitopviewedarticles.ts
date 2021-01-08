@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { State } from 'src/app/client/state';
 import { DateP } from '../widgets/datepicker.component';
+import { Utils } from 'src/app/client/utils'
 
 var axios = require("axios").default;
 
@@ -107,8 +108,7 @@ export class WikiTopViewdArticlesChartComponent implements OnInit, AfterViewInit
             },
             tooltip: {
                 formatter: function (this: Highcharts.TooltipFormatterContextObject): string {
-                    // regex here adds commas to thousands-place of view numbers
-                    return this.key.toString().split("_").join(" ") + "<br/>Views: " + this.y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    return this.key.toString().split("_").join(" ") + "<br/>Views: " + Utils.addCommasToNumberStringThousands(this.y.toString());
                 }
             },
             series: [],

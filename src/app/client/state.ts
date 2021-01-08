@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NewsObj } from './trends/chart/news/newschart.component';
 import { Article } from './trends/chart/widgets/chips.component';
 import { DateP } from './trends/chart/widgets/datepicker.component';
 import { DateRange } from './trends/chart/widgets/daterangepicker.component';
@@ -23,6 +24,7 @@ export class State {
     dateRangeSubj: BehaviorSubject<DateRange>;
     wikiViewsPerDayChipsSubj: BehaviorSubject<Article[]>;
     datePickerSubj: BehaviorSubject<DateP>;
+    newsSubj: BehaviorSubject<NewsObj>;
     constructor(private logger: NGXLogger) {
         this.logger.info("State Object constructing");
         this.subjects = ['Wikipedia'];
@@ -38,6 +40,7 @@ export class State {
         this.dateRangeSubj = new BehaviorSubject({placement: '', start: '', end: ''});
         this.wikiViewsPerDayChipsSubj = new BehaviorSubject([] as Article[]);
         this.datePickerSubj = new BehaviorSubject({ placement: '', year: '', month: '', day: ''});
+        this.newsSubj = new BehaviorSubject({ placement: '', keywords: [] as string[], date: ''});
     }
 
     getSubjects(): Array<string> {
@@ -132,5 +135,13 @@ export class State {
 
     datePObs(): Observable<DateP> {
         return this.datePickerSubj.asObservable();
+    }
+
+    sendsNewsObj(newsobj: NewsObj): void {
+        this.newsSubj.next(newsobj);
+    }
+
+    newsObs(): Observable<NewsObj> {
+        return this.newsSubj.asObservable();
     }
 }

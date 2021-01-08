@@ -1,0 +1,53 @@
+<div #cardholder class="card-holder">
+    <table style="width: 100%">
+        <tr>
+            <td><div class='header'>{{header}}</div></td>
+            <td><button (click)="manualNewsSearch()" style="float: right; color: rgb(0, 0, 0)">Search</button><input #searchinput type="text" style="float: right" (keyup.enter)="manualNewsSearch($event.target.value)" /></td>
+        </tr>
+    </table>
+    <table style="table-layout: fixed; height: 90%; width: 100%; position: inherit;">
+        <div *ngFor="let a of articles; let i = index;">
+            <tr *ngIf="i % 2 == 0">
+                <td style="width: 50%; height: 100px">
+                    <a href={{a.url}} target="_blank">
+                        <div class="card" style="float: left;">
+                            <img src={{a.image}} onerror="this.src='/assets/noimageavailable.svg';" class="card-image">
+                            <div class="card-header">
+                                {{a.title}}
+                            </div>
+                            <div class="card-desc">
+                                {{a.description}}
+                            </div>
+                            <div class="footer">
+                                Source: {{a.source}} | Published: {{a.published_at}}
+                            </div>
+                        </div>
+                    </a>
+                </td>
+                <td style="width: 50%; height: 100px" *ngIf="i < articles.length - 1">
+                    <a href={{articles[i+1].url}} target="_blank">
+                        <div class="card" style="float: right;">
+                            <img src={{articles[i+1].image}} onerror="this.src='/assets/noimageavailable.svg';"
+                                class="card-image">
+                            <div class="card-header">
+                                {{articles[i+1].title}}
+                            </div>
+                            <div class="card-desc">
+                                {{articles[i+1].description}}
+                            </div>
+                            <div class="footer">
+                                Source: {{a.source}} | Published: {{articles[i+1].published_at}}
+                            </div>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </div>
+    </table>
+    <table style="width: 100%;">
+        <tr>
+            <td class="prev-td"><span class="prev-txt" (click)="onPrevClick()">Prev</span></td>
+            <td><span class="next-txt" (click)="onNextClick()">Next</span></td>
+        </tr>
+    </table>
+</div>

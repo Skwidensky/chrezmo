@@ -80,10 +80,10 @@ export class GraphComponent implements AfterViewInit, OnDestroy {
       console.log(error);
     });
   }
-  hideLoader() {
+  private hideLoader() {
     $("#loading").removeClass("loading-dot");
   }
-  showLoader() {
+  private showLoader() {
     $("#loading").addClass("loading-dot")
   }
   // Build and draw the graph based on the passed-in data

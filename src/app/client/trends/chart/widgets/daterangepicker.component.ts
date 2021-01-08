@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { NGXLogger } from 'ngx-logger';
 import { State } from '../../../state';
 
 export interface DateRange {
@@ -21,11 +22,11 @@ export class DateRangePicker implements OnInit, AfterViewInit {
     startDate: Date | undefined;
     endDate: Date | undefined;
 
-    constructor(private state: State) {
-        console.log('Constructor(): DateRangePicker');
+    constructor(private logger: NGXLogger, private state: State) {
+        this.logger.info('Constructor(): DateRangePicker');
     }
     ngOnInit() {
-        console.log('onInit(): DateRangePicker');
+        this.logger.info('onInit(): DateRangePicker');
         let date = new Date();
         var day = date.getDate();
         if (day != 1) {
@@ -33,7 +34,7 @@ export class DateRangePicker implements OnInit, AfterViewInit {
         }
     }
     ngAfterViewInit(): void {
-        console.log('afterViewInit(): DateRangePicker');
+        this.logger.info('afterViewInit(): DateRangePicker');
         var today = new Date();
         var yesterday = new Date(today);
         yesterday.setDate(yesterday.getDate() - 1);
@@ -58,7 +59,6 @@ export class DateRangePicker implements OnInit, AfterViewInit {
                 this.endDate = event.value;
             }
             if (this.startDate && this.endDate) {
-                console.log(this.startDate + " " + this.endDate);
                 this.sendDateRange();
             }
         }

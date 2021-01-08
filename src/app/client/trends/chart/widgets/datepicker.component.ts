@@ -35,7 +35,7 @@ export class DatePicker implements OnInit, AfterViewInit {
         this.sendDateP(yesterday);
     }
     ngOnInit(): void {
-        console.log('onInit(): DatePicker');
+        this.logger.info('onInit(): DatePicker');
     }
     onDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
         if (event.value) {
@@ -44,7 +44,7 @@ export class DatePicker implements OnInit, AfterViewInit {
     }
     sendDateP(date: Date) {
         var month = this.formatDateString((date.getMonth() + 1).toString());
-        var day = this.formatDateString((date.getDate()).toString());
+        var day = this.formatDateString((date.getDate() - 1).toString()); // -1 because Wikimedia doesn't update exactly at midnight
         let datep: DateP = {
             placement: this.placement,
             year: date.getFullYear().toString(),

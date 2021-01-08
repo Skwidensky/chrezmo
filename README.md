@@ -2,26 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
-## Development server
+## Purpose
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Chrezmo is meant to be a tool for correlating an amalgam of data sources. It includes a 3D representation
+of an offline version of Wikipedia, and a collection of data sources that can be used together to try to
+find correlations between them.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Data sources implemented:
+> Wikimedia (https://wikimedia.org/api/rest_v1/)
+> Mediastack news API (https://mediastack.com/)
+> TODO: Yahoo! Finance API (https://rapidapi.com/blog/how-to-use-the-yahoo-finance-api/)
+> TODO: Google Trends (https://www.npmjs.com/package/google-trends-api)
+> TODO: Twitter API (https://developer.twitter.com/en/docs)

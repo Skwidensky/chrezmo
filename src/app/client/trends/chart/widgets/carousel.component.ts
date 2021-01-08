@@ -1,12 +1,14 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NGXLogger } from "ngx-logger";
+import { Subscription } from "rxjs";
+import { State } from "src/app/client/state";
 
 @Component({
     selector: 'carousel',
     templateUrl: 'carousel.component.html',
     styleUrls: ['../../trends.component.css'],
 })
-export class Carousel implements OnInit, AfterViewInit {
+export class Carousel implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('carouselTrack') carouselTrack: ElementRef;
     @ViewChild('chevronLeft') chevronLeft: ElementRef;
     @ViewChild('chevronRight') chevronRight: ElementRef;
@@ -15,12 +17,14 @@ export class Carousel implements OnInit, AfterViewInit {
     @Input() mvacontainer: string;
     riders: any[];
     riderIdx: number;
-    constructor(private logger: NGXLogger) {
+    newsSub: Subscription;
+    constructor(private logger: NGXLogger, private state: State) {
         logger.info("Constructor: Carousel")
         this.riderIdx = 0;
     }
     ngAfterViewInit(): void {
         this.riders = Array.from(this.carouselTrack.nativeElement.children);
+        // Left-arrow rider swap
         this.chevronLeft.nativeElement.addEventListener("click", () => {
             if (this.riderIdx == 0) {
                 return;
@@ -31,6 +35,7 @@ export class Carousel implements OnInit, AfterViewInit {
             this.moveToRider(currentRider, prevRider);
             this.riderIdx -= 1;
         });
+        // Right-arrow rider swap
         this.chevronRight.nativeElement.addEventListener("click", () => {
             if (this.riderIdx == this.riders.length - 1) {
                 return;
@@ -41,8 +46,18 @@ export class Carousel implements OnInit, AfterViewInit {
             this.moveToRider(currentRider, nextRider);
             this.riderIdx += 1;
         });
+        // Subscribe to newsObj emissions to swap to the correct rider
+        this.newsSub = this.state.newsObs().subscribe(newsobj => {
+            if (newsobj.placement == this.placement) {
+                this.moveToRider(this.riders[this.riderIdx], this.riders[2]);
+                this.riderIdx = 2; // stupid but ok
+            }
+        })
     }
     ngOnInit(): void {
+    }
+    ngOnDestroy(): void {
+        this.newsSub.unsubscribe();
     }
     private moveToRider = (currentRider: any, tgtRider: any) => {
         currentRider.classList.remove('current-rider');

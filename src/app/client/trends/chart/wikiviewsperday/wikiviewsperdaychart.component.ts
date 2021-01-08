@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { State } from '../../../state';
 import { Article } from '../widgets/chips.component';
 import { DateRange } from '../widgets/daterangepicker.component';
+import * as $ from 'jquery';
 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
@@ -38,14 +39,6 @@ export class WikiViewsPerDayChartComponent implements OnInit, OnDestroy {
     this.wikiViewsPerDayArticlesSub.unsubscribe();
   }
   ngOnInit(): void {
-    // let todaysDate = this.todaysFormattedDate();
-    // Start the date-range-picker off on today's date
-    // let defaultDateRange: DateRange = {
-    //   placement: this.placement,
-    //   start: "20200101",
-    //   end: "20201201"
-    // }
-    // this.dateRange = defaultDateRange;
     this.dateRangeSub = this.state.dateRangeObs()
       .pipe(filter((dateRange: DateRange) => this.placement == dateRange.placement))
       .subscribe((dateRange: DateRange) => {
@@ -60,10 +53,10 @@ export class WikiViewsPerDayChartComponent implements OnInit, OnDestroy {
         return false;
       }))
       .subscribe((articles: Article[]) => this.fetchViewsPerDay());
-    // this.state.sendDateRange(defaultDateRange);
   }
   private fetchViewsPerDay(): void {
     if (this.dateRange) {
+      this.showLoader();
       // Clear cached messages
       this.cachedMessages = [];
       this.state.wikiViewsPerDayChipsSubj.getValue().forEach((article: Article) => {
@@ -85,9 +78,16 @@ export class WikiViewsPerDayChartComponent implements OnInit, OnDestroy {
       });
     }
   }
+  private hideLoader() {
+    $("#loading").removeClass("loading-dot");
+  }
+  private showLoader() {
+    $("#loading").addClass("loading-dot")
+  }
   //#region chart setup
   // Highchart draws messages cached in this.cachedMessages
   private parseWikiViewsPerPageMessage() {
+    let self = this;
     this.opts = {
       colors: ['#af1717', '#a6af17', '#17af46', '#1777af', '#8317af', '#8bd6e2', '#fff038', '#9cff7b'],
       chart: {
@@ -130,7 +130,28 @@ export class WikiViewsPerDayChartComponent implements OnInit, OnDestroy {
           }
         }
       },
-      series: []
+      series: [],
+      plotOptions: {
+        series: {
+          cursor: 'pointer',
+          point: {
+            events: {
+              click: function () {
+                // @ts-ignore -- this.series.name and this.category doesn't compile, but they're correct.
+                // Get your shit together, Typescript.
+                self.state.sendsNewsObj({
+                  // Send the NewsObj to the opposite news-panel
+                  placement: self.placement == "top" ? "bottom" : "top",
+                  // @ts-ignore
+                  keywords: [this.series.name.split('_').join(' ')],
+                  // @ts-ignore
+                  date: this.category
+                })
+              }
+            }
+          }          
+        }
+      }
     }
     this.cachedMessages.forEach((msg: any) => {
       if (msg != undefined && msg.items != undefined) {
@@ -149,6 +170,7 @@ export class WikiViewsPerDayChartComponent implements OnInit, OnDestroy {
     });
     var container = this.placement == "top" ? "topvpdcontainer" : "bottomvpdcontainer";
     Highcharts.chart(container, this.opts);
+    this.hideLoader();
   }
   //#endregion chart setup
 }
